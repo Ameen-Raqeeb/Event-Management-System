@@ -27,8 +27,8 @@ namespace EventManagmentSystem
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            new Signup().Show();
+            this.Hide(); //hdies login page
+            new Signup().Show(); //launches sign up page
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,22 +36,22 @@ namespace EventManagmentSystem
             string user = textBox1.Text;
             string password = textBox2.Text;
 
-            string dbPassword = new AttendeeController().getAttendeePassword(user);
+            string dbPassword = new AttendeeController().getAttendeePassword(user); //tries to get the password of the attendee
 
             if (dbPassword == null)
             {
-                Admin admin = new Admin(user,password);
+                Admin admin = new Admin(user,password); //check if the password is an admin password
                 string role = admin.authenticateAdmin(admin);
                 if (role == "admin")
                 {
                     MessageBox.Show("Admin login successful.");
-                    this.Hide();
-                    new AdminDashboard().Show();
+                    this.Hide(); 
+                    new AdminDashboard().Show();  //launches admindash board
                     return;
                 }
                 else
                 {
-                  string orgPass = new OrganizerController().getOrganizerPassword(user);
+                  string orgPass = new OrganizerController().getOrganizerPassword(user); //if admin doesnt have the password, checks the organizer password
                     if (orgPass != null)
                     {
                         if (orgPass == password)
@@ -69,12 +69,14 @@ namespace EventManagmentSystem
                         
                     }
                 }
+                //if no password is found proceeds with the below
                 MessageBox.Show("User not found.");
                 textBox1.Clear();
                 textBox2.Clear();
                 return;
             }
-            if (dbPassword == password)
+
+            if (dbPassword == password)//verified as an attendee
             {
                 Session.Username = user;
                 Session.Password = password;
@@ -82,7 +84,7 @@ namespace EventManagmentSystem
                 Session.Id = new AttendeeController().getAttendeeId(user);
                 MessageBox.Show("Login successful.");
                 this.Hide();
-                new AttendeeDashboard().Show();
+                new AttendeeDashboard().Show(); //shows the attendee dashboard
             }
             else
             {
