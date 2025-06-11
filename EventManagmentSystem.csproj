@@ -296,5 +296,8 @@
   <ItemGroup>
     <None Include="Resources\NATHANREINDS-Amsterdam750Jaar-Suppliers-LR-1181.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cover assigmbet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

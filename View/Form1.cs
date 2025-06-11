@@ -46,7 +46,7 @@ namespace EventManagmentSystem
                 {
                     MessageBox.Show("Admin login successful.");
                     this.Hide(); 
-                    new AdminDashboard().Show();  //launches admindash board
+                    new AdminDashboard().Show();  //launches admindashboard
                     return;
                 }
                 else
@@ -69,7 +69,7 @@ namespace EventManagmentSystem
                         
                     }
                 }
-                //if no password is found proceeds with the below
+                //if no username is found proceeds with the below
                 MessageBox.Show("User not found.");
                 textBox1.Clear();
                 textBox2.Clear();
