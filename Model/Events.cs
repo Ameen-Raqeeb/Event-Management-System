@@ -8,11 +8,11 @@ namespace EventManagmentSystem.Model
 {
     class Events
     {
-        public Events(string name, DateTime date, string locationn, string description, Organizers organizer)
+        public Events(string name, DateTime date, string location, string description, Organizers organizer)
         {
             Name = name;
             Date = date;
-            Locationn = locationn;
+            Location = location;
             Description = description;
             Organizer = organizer;
         }
@@ -20,7 +20,7 @@ namespace EventManagmentSystem.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public string Locationn { get; set; }
+        public string Location { get; set; }
         public string Description { get; set; }
         public Organizers Organizer { get; set; }
         public bool Availability { get; set; }

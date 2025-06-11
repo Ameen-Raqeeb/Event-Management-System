@@ -32,7 +32,7 @@ namespace EventManagmentSystem.View
                 
                 textBox2.Text = selectedEvent.Description;
                 dateTimePicker1.Value = selectedEvent.Date;
-                textBox3.Text = selectedEvent.Locationn;
+                textBox3.Text = selectedEvent.Location;
                 comboBox2.Text = selectedEvent.Availability.ToString();
             }
             else

@@ -16,15 +16,15 @@ namespace EventManagmentSystem.Controller
         {
             try
             {
-                MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
-                connection.Open();
+                MySqlConnection conn= new MySqlConnection(dbConnection.connectionString);
+                conn.Open();
                 string query = "INSERT INTO events (name, date, description, location, organizer_id) " +
                                "VALUES (@eventname, @eventdate, @eventdescription, @eventlocation, @organizerid)";
-                MySqlCommand command = new MySqlCommand(query, connection);
+                MySqlCommand command = new MySqlCommand(query, conn);
                 command.Parameters.AddWithValue("@eventname", events.Name);
                 command.Parameters.AddWithValue("@eventdate", events.Date);
                 command.Parameters.AddWithValue("@eventdescription", events.Description);
-                command.Parameters.AddWithValue("@eventlocation", events.Locationn);
+                command.Parameters.AddWithValue("@eventlocation", events.Location);
                 command.Parameters.AddWithValue("@organizerid", events.Organizer.Id);
                 int result = command.ExecuteNonQuery();
 
@@ -124,7 +124,7 @@ namespace EventManagmentSystem.Controller
                 command.Parameters.AddWithValue("@eventname", events.Name);
                 command.Parameters.AddWithValue("@eventdate", events.Date);
                 command.Parameters.AddWithValue("@eventdescription", events.Description);
-                command.Parameters.AddWithValue("@eventlocation", events.Locationn);
+                command.Parameters.AddWithValue("@eventlocation", events.Location);
                 command.Parameters.AddWithValue("@organizerid", events.Organizer.Id);
                 command.Parameters.AddWithValue("@availability", events.Availability);
                 command.Parameters.AddWithValue("@eventid", events.Id);

@@ -83,6 +83,16 @@ namespace EventManagmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NATHANREINDS_Amsterdam750Jaar_Suppliers_LR_118 {
+            get {
+                object obj = ResourceManager.GetObject("NATHANREINDS-Amsterdam750Jaar-Suppliers-LR-118", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap signup {
             get {
                 object obj = ResourceManager.GetObject("signup", resourceCulture);

@@ -8,6 +8,6 @@ namespace EventManagmentSystem
 {
     class DbConnection
     {
-        public string  connectionString = "server=localhost;uid=root;pwd=;port=3309;database=ems;";
+        public string  connectionString = "server=localhost;uid=root;pwd=;port=3306;database=sdam_assignment;";
     }
 }
