@@ -45,7 +45,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::EventManagmentSystem.Properties.Resources.admindpanel;
+            this.panel1.BackgroundImage = global::EventManagmentSystem.Properties.Resources._8eee04aeefee34699b413b5a55079b821;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -53,25 +53,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(252, 450);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(0, 151);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            this.button2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(21, 96);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(249, 47);
+            this.button2.Size = new System.Drawing.Size(213, 47);
             this.button2.TabIndex = 2;
             this.button2.Text = "View Revenue Report";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(0, 22);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(189)))), ((int)(((byte)(235)))));
+            this.button1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(21, 28);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(249, 47);
+            this.button1.Size = new System.Drawing.Size(213, 42);
             this.button1.TabIndex = 1;
             this.button1.Text = "Add Organizers";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // AdminDashboard

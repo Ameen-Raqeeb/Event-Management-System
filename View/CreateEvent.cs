@@ -60,5 +60,10 @@ namespace EventManagmentSystem.View
 
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

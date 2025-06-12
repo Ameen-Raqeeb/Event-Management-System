@@ -299,5 +299,17 @@
   <ItemGroup>
     <None Include="Resources\cover assigmbet.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue-tech-lines-glowing-circuit-background-5703693.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\depositphotos_70080705-stock-illustration-blue-circuit-board.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8eee04aeefee34699b413b5a55079b82.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8eee04aeefee34699b413b5a55079b82.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

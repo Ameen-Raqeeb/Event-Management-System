@@ -39,5 +39,10 @@ namespace EventManagmentSystem.View
         {
             changePanel(new RevenueReport());
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
