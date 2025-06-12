@@ -63,6 +63,26 @@ namespace EventManagmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _8eee04aeefee34699b413b5a55079b82 {
+            get {
+                object obj = ResourceManager.GetObject("8eee04aeefee34699b413b5a55079b82", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8eee04aeefee34699b413b5a55079b821 {
+            get {
+                object obj = ResourceManager.GetObject("8eee04aeefee34699b413b5a55079b821", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap admindpanel {
             get {
                 object obj = ResourceManager.GetObject("admindpanel", resourceCulture);
@@ -73,9 +93,29 @@ namespace EventManagmentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blue_tech_lines_glowing_circuit_background_5703693 {
+            get {
+                object obj = ResourceManager.GetObject("blue-tech-lines-glowing-circuit-background-5703693", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cover_assigmbet {
             get {
                 object obj = ResourceManager.GetObject("cover assigmbet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap depositphotos_70080705_stock_illustration_blue_circuit_board {
+            get {
+                object obj = ResourceManager.GetObject("depositphotos_70080705-stock-illustration-blue-circuit-board", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
