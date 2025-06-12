@@ -1,6 +1,6 @@
 CREATE DATABASE sdam_assignment;
 
-USE ems;
+USE sdam_assignment;
 
 CREATE TABLE Attendee(
     id int PRIMARY KEY AUTO_INCREMENT,
