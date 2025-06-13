@@ -13,23 +13,25 @@ namespace EventManagmentSystem.Controller
     class AttendeeController
     {
         DbConnection dbConnection = new DbConnection();
-        public void addAttendee(Attendee attendee)
+        public void addAttendee(Attendee attendee) //a method to add a new attendee to the DB
         {
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
 
-                string query = "INSERT INTO attendee (name, password, contactnumber, gender) value " +
+                string query = "INSERT INTO attendee (name, password, contactnumber, gender) value " + 
                     "(@name, @pasword, @contactnumber, @gender)";
 
+
+                //inserts the the data into the database
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", attendee.Name);
                 command.Parameters.AddWithValue("@pasword", attendee.Password);
                 command.Parameters.AddWithValue("@contactnumber", attendee.ContactNumbers);
                 command.Parameters.AddWithValue("@gender", attendee.Gender);
 
-                int result = command.ExecuteNonQuery();
+                int result = command.ExecuteNonQuery(); //runs the sql query and gets how many rows were effected 
                 if (result > 0)
                 {
                     MessageBox.Show("Attendee added successfully.");
@@ -48,16 +50,16 @@ namespace EventManagmentSystem.Controller
 
         }
 
-        public string getAttendeePassword(string name)
+        public string getAttendeePassword(string name) //a method to get the password of the attendee
         {
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "SELECT password FROM attendee WHERE name = @name";
+                string query = "SELECT password FROM attendee WHERE name = @name"; //gets the password from the database where input name is == database name
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
-                string password = command.ExecuteScalar()?.ToString();
+                string password = command.ExecuteScalar()?.ToString(); //converts the password retrived from the database to a stringg
                 connection.Close();
                 return password;
             }
@@ -68,16 +70,16 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public int getAttendeeId(string name)
+        public int getAttendeeId(string name) //a method to get the the attendee id
         {
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "SELECT id FROM attendee WHERE name = @name";
+                string query = "SELECT id FROM attendee WHERE name = @name"; //gets the id from the database where input name is == database name
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
-                int id = Convert.ToInt32(command.ExecuteScalar());
+                int id = Convert.ToInt32(command.ExecuteScalar()); //converts the id retrived from the database to a stringg
                 connection.Close();
                 return id;
             }
@@ -88,9 +90,9 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public DataTable getAlltheTicketsByAttendee(int attendeeId)
+        public DataTable getAlltheTicketsByAttendee(int attendeeId) //a method to get all the tickets purchased by a attendee
         {
-            List<Ticket> tickets = new List<Ticket>();
+
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
@@ -113,14 +115,18 @@ namespace EventManagmentSystem.Controller
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", attendeeId);
-                MySqlDataReader reader = command.ExecuteReader();
+                MySqlDataReader reader = command.ExecuteReader(); //stores the result in the reader
 
-                DataTable tickettable = new DataTable();
+                DataTable tickettable = new DataTable(); 
+
+                //adds columns with data typeess
                 tickettable.Columns.Add("EventName", typeof(string));
                 tickettable.Columns.Add("EventDate", typeof(DateTime));
                 tickettable.Columns.Add("QuantityBought", typeof(int));
                 tickettable.Columns.Add("TicketType", typeof(string));
                 tickettable.Columns.Add("Total", typeof(decimal));
+
+                //loops through each record in the reader and creates a new row
                 while (reader.Read())
                 {
                     DataRow row = tickettable.NewRow();

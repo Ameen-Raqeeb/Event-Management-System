@@ -11,24 +11,27 @@ namespace EventManagmentSystem.Controller
 {
     class EventController
     {
-        DbConnection dbConnection = new DbConnection();
-        public void CreateEvent(Events events)
+        DbConnection dbConnection = new DbConnection();  //created a new database connection
+        public void CreateEvent(Events events) // A method Insert new events to the DB
         {
             try
             {
                 MySqlConnection conn= new MySqlConnection(dbConnection.connectionString);
-                conn.Open();
+                conn.Open(); //opens DB connection
                 string query = "INSERT INTO events (name, date, description, location, organizer_id) " +
-                               "VALUES (@eventname, @eventdate, @eventdescription, @eventlocation, @organizerid)";
+                               "VALUES (@eventname, @eventdate, @eventdescription, @eventlocation, @organizerid)"; //SQL query to insert the data in the DB
                 MySqlCommand command = new MySqlCommand(query, conn);
+
+                //fills the SQL query using the data from the events object
                 command.Parameters.AddWithValue("@eventname", events.Name);
                 command.Parameters.AddWithValue("@eventdate", events.Date);
                 command.Parameters.AddWithValue("@eventdescription", events.Description);
                 command.Parameters.AddWithValue("@eventlocation", events.Location);
                 command.Parameters.AddWithValue("@organizerid", events.Organizer.Id);
-                int result = command.ExecuteNonQuery();
 
-                if (result > 0)
+                int result = command.ExecuteNonQuery(); //runs the sql query and checks how many rows were affecfed
+
+                if (result > 0) //checks if the insertion was succesdful 
                 {
                     MessageBox.Show("Event created successfully.");
                 }
@@ -43,7 +46,11 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public List<Events> getEventsbyOrganizer(int organizerId)
+
+
+
+        //A method to retrive all the events created by one specific organizer
+        public List<Events> getEventsbyOrganizer(int organizerId) //gets a list of all events of one specific user
         {
             List<Events> eventsList = new List<Events>();
             try
@@ -53,9 +60,12 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT * FROM events WHERE organizer_id = @organizerid";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@organizerid", organizerId);
-                MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                MySqlDataReader reader = command.ExecuteReader(); //runs the query to get the results to read
+
+
+                while (reader.Read()) //read the data recieved
                 {
+                    //creates a new event object using the data gotten from the DB
                     Events eventItem = new Events(
                         reader["name"].ToString(),
                         Convert.ToDateTime(reader["date"]),
@@ -78,9 +88,12 @@ namespace EventManagmentSystem.Controller
             return eventsList;
         }
 
-        public Events getEventById(int eventId)
+
+
+
+        public Events getEventById(int eventId) //a method to get one event by it's id
         {
-            Events eventItem = null;
+            Events eventItem = null; //created am empty variable to store in case an event is found
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
@@ -88,15 +101,16 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT * FROM events WHERE id = @eventid";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@eventid", eventId);
-                MySqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
+                MySqlDataReader reader = command.ExecuteReader(); //runs the query
+
+                if (reader.Read()) //if an event is found
                 {
-                    eventItem = new Events(
+                    eventItem = new Events( //create a new event object
                         reader["name"].ToString(),
                         Convert.ToDateTime(reader["date"]),
                         reader["location"].ToString(),
                         reader["description"].ToString(),
-                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"]))
+                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"])) //gets the organizer details
                     )
                     {
                         Id = Convert.ToInt32(reader["id"]),
@@ -112,7 +126,8 @@ namespace EventManagmentSystem.Controller
             return eventItem;
         }
 
-        public void updateEvent(Events events)
+
+        public void updateEvent(Events events) //a method to update the event details
         {
             try
             {
@@ -128,8 +143,9 @@ namespace EventManagmentSystem.Controller
                 command.Parameters.AddWithValue("@organizerid", events.Organizer.Id);
                 command.Parameters.AddWithValue("@availability", events.Availability);
                 command.Parameters.AddWithValue("@eventid", events.Id);
-                int result = command.ExecuteNonQuery();
-                if (result > 0)
+                int result = command.ExecuteNonQuery(); //runs the query and checks how many rows were affected
+
+                if (result > 0) //if atleast one row was affected
                 {
                     MessageBox.Show("Event updated successfully.");
                 }
@@ -145,21 +161,22 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public void deleteEvent(int eventId)
+
+
+        public void deleteEvent(int eventId) //a method to delete an event
         {
             try
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
 
-                //Delete Ticket Associated with Event
-                string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @eventid";
+                //Delete Ticket details related to the Event
+                string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @eventid"; //delete the tickets for the event
                 MySqlCommand deleteTicketCommand = new MySqlCommand(deleteTicketQuery, connection);
                 deleteTicketCommand.Parameters.AddWithValue("@eventid", eventId);
                 deleteTicketCommand.ExecuteNonQuery();
 
-                //Delete Event
-                string query = "DELETE FROM events WHERE id = @eventid";
+                string query = "DELETE FROM events WHERE id = @eventid"; //deletes the event from the DB
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@eventid", eventId);
                 int result = command.ExecuteNonQuery();
@@ -179,7 +196,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public List<Events> getAllEvents()
+        public List<Events> getAllEvents() //provides a list of all the events created
         {
             List<Events> eventsList = new List<Events>();
             try
@@ -189,14 +206,14 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT * FROM events";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                while (reader.Read()) //loop through each row
                 {
-                    Events eventItem = new Events(
+                    Events eventItem = new Events( //creates an event object with the data
                         reader["name"].ToString(),
                         Convert.ToDateTime(reader["date"]),
                         reader["location"].ToString(),
                         reader["description"].ToString(),
-                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"]))
+                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"])) //gets the organizer details
                     )
                     {
                         Id = Convert.ToInt32(reader["id"]),

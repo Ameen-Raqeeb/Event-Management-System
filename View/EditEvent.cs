@@ -25,8 +25,8 @@ namespace EventManagmentSystem.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int eventId = (int)comboBox1.SelectedValue;
-            Events selectedEvent = new Controller.EventController().getEventById(eventId);
+            int eventId = (int)comboBox1.SelectedValue; //get the id of the selected id
+            Events selectedEvent = new Controller.EventController().getEventById(eventId); //get the event detaills from the DB and creates a new object
             if (selectedEvent != null)
             {
                 
@@ -83,13 +83,13 @@ namespace EventManagmentSystem.View
 
         private void EditEvent_Load(object sender, EventArgs e)
         {
-            List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id);
+            List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id); //gets the all events from a specific organizer
 
             if (events.Count > 0)
             {
-                comboBox1.DataSource = events;
-                comboBox1.DisplayMember = "Name"; 
-                comboBox1.ValueMember = "Id"; 
+                comboBox1.DataSource = events; //sets the datasource for the dropdown menu as events
+                comboBox1.DisplayMember = "Name"; //shows the events under the dropdown menu
+                comboBox1.ValueMember = "Id"; //uses the event id as the value
             }
             else
             {
@@ -97,9 +97,13 @@ namespace EventManagmentSystem.View
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //updates the event details
         {
-            int eventId = (int)comboBox1.SelectedValue;
+
+            int eventId = (int)comboBox1.SelectedValue; 
+
+            //gets the updated data from the fields
+
             String eventName = comboBox1.Text;
             DateTime dateTime = dateTimePicker1.Value;
             string description = textBox2.Text;
@@ -107,6 +111,7 @@ namespace EventManagmentSystem.View
             string availability = comboBox2.Text;
             Organizers organizer = new Controller.OrganizerController().getOrganizersfromId(Session.Id);
 
+            //ensures all the fields are updated
             if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(location) || string.IsNullOrEmpty(availability))
             {
                 MessageBox.Show("Please fill in all fields.");
@@ -114,10 +119,10 @@ namespace EventManagmentSystem.View
             }
             try
             {
-                Events updatedEvent = new Events(eventName, dateTime, description, location, organizer );
+                Events updatedEvent = new Events(eventName, dateTime, description, location, organizer ); //creates an event object called updated events
                 updatedEvent.Id = eventId;
                 updatedEvent.Availability = Convert.ToBoolean(availability);
-                new Controller.EventController().updateEvent(updatedEvent);
+                new Controller.EventController().updateEvent(updatedEvent); //saves the updated data to the DB
                 
                 EditEvent_Load(sender, e);
             }

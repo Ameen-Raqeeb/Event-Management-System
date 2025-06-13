@@ -20,7 +20,7 @@ namespace EventManagmentSystem.Controller
             {
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
-                string query = "INSERT INTO organizer (username, password, contactnumber, email) VALUES " +
+                string query = "INSERT INTO organizer (name, password, contactnumber, email) VALUES " +
                     "(@username, @password, @contact, @email)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", organizer.Name);

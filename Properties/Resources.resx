@@ -121,16 +121,28 @@
   <data name="signup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\signup.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="8eee04aeefee34699b413b5a55079b82" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\8eee04aeefee34699b413b5a55079b82.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="depositphotos_70080705-stock-illustration-blue-circuit-board" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\depositphotos_70080705-stock-illustration-blue-circuit-board.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="admindpanel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\admindpanel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NATHANREINDS-Amsterdam750Jaar-Suppliers-LR-118" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NATHANREINDS-Amsterdam750Jaar-Suppliers-LR-1181.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cover assigmbet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cover assigmbet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue-tech-lines-glowing-circuit-background-5703693" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-tech-lines-glowing-circuit-background-5703693.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="8eee04aeefee34699b413b5a55079b821" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\8eee04aeefee34699b413b5a55079b82.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
