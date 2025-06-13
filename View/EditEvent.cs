@@ -122,7 +122,7 @@ namespace EventManagmentSystem.View
                 Events updatedEvent = new Events(eventName, dateTime, description, location, organizer ); //creates an event object called updated events
                 updatedEvent.Id = eventId;
                 updatedEvent.Availability = Convert.ToBoolean(availability);
-                new Controller.EventController().updateEvent(updatedEvent);
+                new Controller.EventController().updateEvent(updatedEvent); //saves the updated data to the DB
                 
                 EditEvent_Load(sender, e);
             }
