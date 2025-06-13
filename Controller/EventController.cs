@@ -213,7 +213,7 @@ namespace EventManagmentSystem.Controller
                         Convert.ToDateTime(reader["date"]),
                         reader["location"].ToString(),
                         reader["description"].ToString(),
-                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"]))
+                        new OrganizerController().getOrganizersfromId(Convert.ToInt32(reader["organizer_id"])) //gets the organizer details
                     )
                     {
                         Id = Convert.ToInt32(reader["id"]),
