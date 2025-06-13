@@ -14,7 +14,7 @@ namespace EventManagmentSystem.Controller
     {
         DbConnection dbConnection = new DbConnection();
 
-        public void addOrganizer(Organizers organizer)
+        public void addOrganizer(Organizers organizer) //a method to add a new organizer to the DB
         {
             try
             {
@@ -22,13 +22,16 @@ namespace EventManagmentSystem.Controller
                 connection.Open();
                 string query = "INSERT INTO organizer (name, password, contactnumber, email) VALUES " +
                     "(@username, @password, @contact, @email)";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@username", organizer.Name);
+                MySqlCommand command = new MySqlCommand(query, connection); 
+
+                //adds the data to the DB
+                command.Parameters.AddWithValue("@username", organizer.Name); 
                 command.Parameters.AddWithValue("@password", organizer.Password);
                 command.Parameters.AddWithValue("@contact", organizer.ContactNumbers);
                 command.Parameters.AddWithValue("@email", organizer.Email);
-                int result = command.ExecuteNonQuery();
-                if (result > 0)
+                int result = command.ExecuteNonQuery(); //runs the sql command
+
+                if (result > 0) //checks how many rows were affected
                 {
                     MessageBox.Show("Organizer added successfully.");
                 }
@@ -44,7 +47,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public string getOrganizerPassword(string name)
+        public string getOrganizerPassword(string name) //a method to get the organizer passwords
         {
             try
             {
@@ -53,7 +56,7 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT password FROM organizer WHERE name = @name";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
-                string password = command.ExecuteScalar()?.ToString();
+                string password = command.ExecuteScalar()?.ToString(); //runs the query and converts the password to a string
                 connection.Close();
                 return password;
             }
@@ -64,7 +67,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public int getOrganizerId(string name)
+        public int getOrganizerId(string name) //a method to get the organizer ids
         {
             try
             {
@@ -73,7 +76,7 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT id FROM organizer WHERE name = @name";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@name", name);
-                int id = Convert.ToInt32(command.ExecuteScalar());
+                int id = Convert.ToInt32(command.ExecuteScalar()); //runs the query and converts the password to an int
                 connection.Close();
                 return id;
             }
@@ -84,7 +87,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public Organizers getOrganizersfromId(int id)
+        public Organizers getOrganizersfromId(int id) //a method to get the organizer details from the id
         {
             try
             {
@@ -93,10 +96,11 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT * FROM organizer WHERE id = @id";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
-                MySqlDataReader reader = command.ExecuteReader();
+                MySqlDataReader reader = command.ExecuteReader(); //saves the retrived data under reader
 
                 if (reader.Read())
                 {
+                    //creates an organiser object using the data from reader
                     Organizers organizer = new Organizers(
                         reader["name"].ToString(),
                         reader["password"].ToString(),
@@ -120,7 +124,7 @@ namespace EventManagmentSystem.Controller
             }
         }
 
-        public DataTable getEventDetails(int event_id)
+        public DataTable getEventDetails(int event_id) //method to get details about the tickets purchases for a specific event
         {
             try
             {
@@ -144,6 +148,8 @@ namespace EventManagmentSystem.Controller
                                 ";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@event_id", event_id);
+
+                //used to fill the data into the datatable
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);

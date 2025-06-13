@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventManagmentSystem.Model
 {
-    class Attendee : User
+    class Attendee : User //inherits from user
     {
         public Attendee(string name, string password, string contactnumber, string gender) : base(name, password)
         {
