@@ -21,13 +21,14 @@ namespace EventManagmentSystem.View
 
         private void ViewEventDetails_Load(object sender, EventArgs e)
         {
-            List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id);
+            List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id); //gets all the events organized by the user
 
+            //if events exists
             if (events.Count > 0)
             {
-                comboBox1.DataSource = events;
-                comboBox1.DisplayMember = "Name";
-                comboBox1.ValueMember = "Id";
+                comboBox1.DataSource = events; //sets the datasource as events list
+                comboBox1.DisplayMember = "Name"; //displays the names of the events in the dropdown
+                comboBox1.ValueMember = "Id"; //stores the id values
             }
             else
             {
@@ -39,9 +40,9 @@ namespace EventManagmentSystem.View
         {
             int eventId = (int)comboBox1.SelectedValue;
 
-            DataTable dataTable = new OrganizerController().getEventDetails(eventId);
+            DataTable dataTable = new OrganizerController().getEventDetails(eventId); //gets the event details of the selected event using the organizer controller in a datatable
 
-            dataGridView1.DataSource = dataTable;
+            dataGridView1.DataSource = dataTable; //merges the data to a datagrid view 
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EventManagmentSystem.Controller
     class ReportController
     {
         DbConnection dbConnection = new DbConnection();
-        public DataTable generateRevenuereport()
+        public DataTable generateRevenuereport() //a method to get the revnue
         {
             try
             {
@@ -22,8 +22,8 @@ namespace EventManagmentSystem.Controller
                 string query = "SELECT e.name AS EventName, e.date AS EventDate, SUM(p.quantity) AS TotalTicketsSold, SUM(p.total) AS TotalRevenue FROM purchase p JOIN ticket t ON p.ticket_id = t.id JOIN events e ON t.event_id = e.id GROUP BY  e.id, e.name, e.date ORDER BY e.date;";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-                DataTable revenueReport = new DataTable();
-                adapter.Fill(revenueReport);
+                DataTable revenueReport = new DataTable(); //creates a datatable to hold the revenue data
+                adapter.Fill(revenueReport); //loads the data into the revenue table
                 connection.Close();
                 return revenueReport;
             }
