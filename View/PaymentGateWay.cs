@@ -113,5 +113,10 @@ namespace EventManagmentSystem.View
         {
             radioButton2.Checked = false;
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

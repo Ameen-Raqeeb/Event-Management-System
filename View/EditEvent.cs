@@ -92,7 +92,7 @@ namespace EventManagmentSystem.View
 
         private void EditEvent_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.MinDate = DateTime.Now;
+            dateTimePicker1.MinDate = DateTime.Now; 
             List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id); //gets the all events from a specific organizer
 
             if (events.Count > 0)

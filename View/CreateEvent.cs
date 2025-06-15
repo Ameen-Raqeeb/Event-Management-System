@@ -59,6 +59,10 @@ namespace EventManagmentSystem.View
 
             new EventController().CreateEvent(newEvent); //saves the new event to the DB
 
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+
 
 
         }
