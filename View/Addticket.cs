@@ -11,24 +11,24 @@ using System.Windows.Forms;
 
 namespace EventManagmentSystem.View
 {
-    // Form used to allow an event organizer to add tickets for their events
+    // Form for adding tickets to events
     public partial class AddTicket: Form
     {
-        // Constructor that initializes the form's UI components
+        // Initialize the form components
         public AddTicket()
         {
             InitializeComponent();
         }
 
-        // Event that fires when the form loads
+        // Load event list when form opens
         private void AddTicket_Load(object sender, EventArgs e)
         {
-            // Retrieves the list of events created by the currently logged-in organizer using their session ID
+            // Get events for current organizer
             List<Events> events = new Controller.EventController().getEventsbyOrganizer(Session.Id);
 
             if (events.Count > 0)
             {
-                // If events exist, bind them to comboBox1 for selection
+                // Populate event dropdown
                 comboBox1.DataSource = events;
                 comboBox1.DisplayMember = "Name";   // Display the event name in the combo box
                 comboBox1.ValueMember = "Id";       // Use the event ID as the selected value
@@ -40,10 +40,10 @@ namespace EventManagmentSystem.View
             }
         }
 
-        // Event handler for the "Add Ticket" button click
+        // Handle add ticket button click
         private void button1_Click(object sender, EventArgs e)
         {
-            // Get the selected event ID from comboBox1
+            // Get selected event details
             int eventId = (int)comboBox1.SelectedValue;
             // Fetch full event details using the selected event ID
             Events selectedEvent = new Controller.EventController().getEventById(eventId);
@@ -59,13 +59,12 @@ namespace EventManagmentSystem.View
 
             // Refresh the form to update any data
             AddTicket_Load(sender, e);
-
         }
 
-        // Optional: this can be used for additional logic when ticket type is changed
+        // Handle ticket type selection change
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Currently unused, but can be used to dynamically change UI or pricing
+            // Can be used to update UI based on ticket type
         }
     }
 }

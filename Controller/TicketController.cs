@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace EventManagmentSystem.Controller
 {
+    // Controller class for managing ticket operations
     class TicketController
     {
         // Create a connection object to use the database
@@ -48,7 +49,6 @@ namespace EventManagmentSystem.Controller
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
 
         // Get a ticket by event ID and ticket type
         public Ticket getTickeybyEventandType(int eventId, string ticketType)
@@ -150,7 +150,6 @@ namespace EventManagmentSystem.Controller
             }
             return null;
         }
-
 
         // Reduce the quantity of a specific ticket after a purchase
         public void reduceTicketQuantity(int ticketId, int quantity)

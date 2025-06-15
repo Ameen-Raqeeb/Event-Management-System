@@ -12,21 +12,22 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EventManagmentSystem.View
 {
-    // Form to allow attendees to purchase tickets
+    // Form for purchasing event tickets
     public partial class PurchaseTickets : Form
     {
-        // Reference to the AttendeeDashboard to call payment function
+        // Reference to parent dashboard
         private AttendeeDashboard attendeeDashboard;
-        // Constructor that receives the dashboard instance
+
         public PurchaseTickets(AttendeeDashboard attendeeDashboard)
         {
             InitializeComponent();
             this.attendeeDashboard = attendeeDashboard;
         }
 
-        // Stores selected ticket ID for purchase
+        // Store selected ticket ID
         int ticketId;
-        // Load event: populates event dropdown (comboBox1)
+
+        // Load events when form opens
         private void PurchaseTickets_Load(object sender, EventArgs e)
         {
             // Get all available events
@@ -34,55 +35,51 @@ namespace EventManagmentSystem.View
 
             if (events.Count > 0)
             {
-                // Bind the events to comboBox1
+                // Populate event dropdown
                 comboBox1.DataSource = events;
                 comboBox1.DisplayMember = "Name";
                 comboBox1.ValueMember = "Id";
             }
             else
             {
-                // If no events found, show message
                 MessageBox.Show("No events At the Moment");
             }
         }
 
-        // Triggered when ticket type is selected (comboBox2)
+        // Handle ticket type selection
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get selected event ID
+            // Get selected event and ticket type
             int eventId = (int)comboBox1.SelectedValue;
-            // Get selected ticket type (e.g. General/VIP)
             string ticketType = comboBox2.Text;
 
-            // Fetch ticket using event ID and type
+            // Get ticket details
             Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType);
 
             if (selectedTicket != null)
             {
+                // Check ticket availability
                 if (selectedTicket.Available == false)
                 {
-                    // If ticket is not available, show warning
                     MessageBox.Show("Ticket is not available for purchase.");
                     return;
                 }
 
-                // Display ticket price and quantity
+                // Display ticket details
                 textBox1.Text = selectedTicket.Price.ToString();
                 textBox2.Text = selectedTicket.Quantity.ToString();
-                // Store ticket ID for later use in purchase
                 ticketId = selectedTicket.Id;
             }
             else
             {
                 MessageBox.Show("Ticket not Available for Selected Type.");
             }
-
         }
 
-        // Purchase button click event
+        // Handle purchase button click
         private void button1_Click(object sender, EventArgs e)
         {
-            // Get event and ticket info
+            // Get purchase details
             int eventId = (int)comboBox1.SelectedValue;
             string ticketType = comboBox2.Text;
             int quantity = int.Parse(textBox3.Text);
@@ -94,12 +91,11 @@ namespace EventManagmentSystem.View
                 return;
             }
 
-            // Get the selected ticket again to double-check data
+            // Get ticket details
             Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType);
 
-            // Call payment gateway method in AttendeeDashboard, passing ticket ID and quantity
+            // Open payment gateway
             attendeeDashboard.paymentGateway(ticketId, quantity);
-
         }
     }
 }
