@@ -25,5 +25,10 @@ namespace EventManagmentSystem.View
             // Display report in data grid
             dataGridView1.DataSource = dataTable;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

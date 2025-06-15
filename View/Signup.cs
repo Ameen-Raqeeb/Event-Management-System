@@ -19,7 +19,7 @@ namespace EventManagmentSystem.View
             InitializeComponent();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) //when user clicks the link, hides the current form and shows the login formm
         {
             this.Hide();
             new Form1().Show();
@@ -33,18 +33,21 @@ namespace EventManagmentSystem.View
             string gender = comboBox1.Text;
 
             // Check if any field is empty
-            if (username == null && password == null && contact == null && gender == null)
+            if (string.IsNullOrWhiteSpace(username) ||
+                string.IsNullOrWhiteSpace(password) ||
+                string.IsNullOrWhiteSpace(contact) ||
+                string.IsNullOrWhiteSpace(gender))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            Attendee attendee = new Attendee(username, password, contact, gender);
+            Attendee attendee = new Attendee(username, password, contact, gender); //creates a new attendee obeject
 
-            new AttendeeController().addAttendee(attendee);
+            new AttendeeController().addAttendee(attendee); //passes the object to the controller to add to the database
 
-            this.Hide();
-            new Form1().Show();
+            this.Hide(); //once added closes the signup page
+            new Form1().Show(); //shows the login page
 
         }
     }

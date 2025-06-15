@@ -45,7 +45,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::EventManagmentSystem.Properties.Resources._8eee04aeefee34699b413b5a55079b821;
+            this.panel1.BackgroundImage = global::EventManagmentSystem.Properties.Resources._8eee04aeefee34699b413b5a55079b82;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
