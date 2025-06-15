@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace EventManagmentSystem.View
 {
+    // This form is used by Admin to add new organizers to the system
     public partial class AddOrganizer: Form
     {
         public AddOrganizer()
@@ -18,15 +19,19 @@ namespace EventManagmentSystem.View
             InitializeComponent();
         }
 
+        // Event handler for the Add Organizer button
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-            string contact = textBox3.Text;
-            string email = textBox4.Text;
+            // Get input from text boxes
+            string username = textBox1.Text;      // Organizer name
+            string password = textBox2.Text;      // Organizer password
+            string contact = textBox3.Text;       // Contact number
+            string email = textBox4.Text;         // Email address
 
+            // Create new Organizer object
             Organizers organizer = new Organizers(username, password, contact, email);
 
+            // Validate all fields are filled
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
                 string.IsNullOrEmpty(contact) || string.IsNullOrEmpty(email))
             {
@@ -36,8 +41,10 @@ namespace EventManagmentSystem.View
 
             try
             {
+                // Add organizer to database using OrganizerController
                 new Controller.OrganizerController().addOrganizer(organizer);
                 
+                // Clear form after successful addition
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();

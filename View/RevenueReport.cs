@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace EventManagmentSystem.View
 {
+    // Displays revenue reports for events
     public partial class RevenueReport: Form
     {
         public RevenueReport()
@@ -19,8 +20,9 @@ namespace EventManagmentSystem.View
 
         private void RevenueReport_Load(object sender, EventArgs e)
         {
+            // Generate and display revenue report when form loads
             DataTable dataTable = new Controller.ReportController().generateRevenuereport();
-
+            // Display report in data grid
             dataGridView1.DataSource = dataTable;
         }
     }
