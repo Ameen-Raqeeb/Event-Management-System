@@ -17,7 +17,7 @@ namespace EventManagmentSystem.View
             InitializeComponent();
         }
 
-        public void changePanel(object Form)
+        public void changePanel(object Form) //replaces the form inside panel2
         {
             if (this.panel2.Controls.Count > 0)
             {
