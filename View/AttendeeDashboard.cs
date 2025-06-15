@@ -17,33 +17,33 @@ namespace EventManagmentSystem.View
             InitializeComponent();
         }
 
-        public void changePanel(object Form) //replaces the form inside panel2
+        public void changePanel(object Form) //replaces the form inside panel2 with another form
         {
-            if (this.panel2.Controls.Count > 0)
+            if (this.panel2.Controls.Count > 0) //if the form is inside the panel, remove it
             {
                 this.panel2.Controls.RemoveAt(0);
             }
             Form f = Form as Form;
-            f.TopLevel = false;
+            f.TopLevel = false; //makes a child class
             f.Dock = DockStyle.Fill;
-            this.panel2.Controls.Add(f);
+            this.panel2.Controls.Add(f); //add the form to panel 2
             this.panel2.Tag = f;
             f.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            changePanel(new ViewPurchasedTicket());
+            changePanel(new ViewPurchasedTicket()); //loads the view purchased form to panel 2
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            changePanel(new PurchaseTickets(this));
+            changePanel(new PurchaseTickets(this)); //loads the purchase tickets form to panel 2
         }
 
         public void paymentGateway(int ticket_id, int quantity)
         {
-           changePanel(new PaymentGateWay(ticket_id, quantity));
+           changePanel(new PaymentGateWay(ticket_id, quantity)); //loads the payment gateway form to panel 2
         }
     }
 }
