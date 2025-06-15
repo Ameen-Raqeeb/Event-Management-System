@@ -9,17 +9,25 @@ using System.Windows.Forms;
 
 namespace EventManagmentSystem.Controller
 {
+    // Controller class for managing ticket purchase operations
     class PurchaseController
     {
+        // Database connection instance
         DbConnection dbConnection = new DbConnection();
+
+        // Creates a new purchase record and associated payment
+        // Handles the entire purchase process including:
+        // 1. Creating the purchase record
+        // 2. Creating the payment record
+        // 3. Updating ticket quantities
         public void CreatePurchase(Purchase purchase, Payment payment)
         {
             try
             {
-                //i want to add purchase and get the purchase id
                 MySqlConnection connection = new MySqlConnection(dbConnection.connectionString);
                 connection.Open();
 
+                // Insert purchase record
                 string query = "INSERT INTO purchase (ticket_id, attendee_id, quantity, total) VALUES (@ticketid, @attendeeID, @quantity, @total)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ticketid", purchase.Ticket_id);
@@ -30,10 +38,11 @@ namespace EventManagmentSystem.Controller
 
                 if (result > 0)
                 {
-                    // Get the last inserted ID
+                    // Get the ID of the newly created purchase
                     command.CommandText = "SELECT LAST_INSERT_ID()";
                     purchase.Id = Convert.ToInt32(command.ExecuteScalar());
-                    // Now insert into payment table
+
+                    // Insert payment record table in the DB
                     query = "INSERT INTO payment (purchase_id, type, number, name, expiry, ccv) VALUES (@purchaseId, @type, @number, @name, @expiry, @ccv)";
                     command.CommandText = query;
                     command.Parameters.Clear();
@@ -47,9 +56,8 @@ namespace EventManagmentSystem.Controller
                     result = command.ExecuteNonQuery();
                     if (result > 0)
                     {
-
+                        // Update available ticket quantity
                         new TicketController().reduceTicketQuantity(purchase.Ticket_id, purchase.Quantity);
-
                         MessageBox.Show("Purchase Completed successfully.");
                     }
                     else

@@ -119,7 +119,7 @@ namespace EventManagmentSystem.Controller
 
                 DataTable tickettable = new DataTable(); 
 
-                //adds columns with data typeess
+                // Define columns for the ticket table
                 tickettable.Columns.Add("EventName", typeof(string));
                 tickettable.Columns.Add("EventDate", typeof(DateTime));
                 tickettable.Columns.Add("QuantityBought", typeof(int));
