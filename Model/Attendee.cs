@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace EventManagmentSystem.Model
 {
-    class Attendee : User //inherits from user
+    // Represents an attendee in the event management system
+    // Inherits basic user properties from the User class
+    class Attendee : User
     {
+        // Constructor to create a new attendee with basic information
         public Attendee(string name, string password, string contactnumber, string gender) : base(name, password)
         {
             ContactNumbers = contactnumber;
             Gender = gender;
         }
-        public string ContactNumbers { get; set; }
-        public string Gender { get; set; }
 
-       
+        // Contact number(s) of the attendee
+        public string ContactNumbers { get; set; }
+        
+        // Gender of the attendee
+        public string Gender { get; set; }
     }
 }
