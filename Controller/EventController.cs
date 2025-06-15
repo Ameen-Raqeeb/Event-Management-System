@@ -173,18 +173,38 @@ namespace EventManagmentSystem.Controller
                 connection.Open();
 
                 //Delete Ticket details related to the Event
-                string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @eventid"; //delete the tickets for the event
+                //string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @eventid"; //delete the tickets for the event
 
+                // Step 1: Delete purchases related to tickets for the event
+                string deletePurchaseQuery = @"
+            DELETE FROM purchase 
+            WHERE ticket_id IN (
+                SELECT id FROM ticket WHERE event_id = @event_id
+            )";
+                MySqlCommand deletePurchaseCommand = new MySqlCommand(deletePurchaseQuery, connection);
+                deletePurchaseCommand.Parameters.AddWithValue("@event_id", eventId);
+                deletePurchaseCommand.ExecuteNonQuery();
 
-
+                // Step 2: Delete tickets related to the event
+                string deleteTicketQuery = "DELETE FROM ticket WHERE event_id = @event_id";
                 MySqlCommand deleteTicketCommand = new MySqlCommand(deleteTicketQuery, connection);
-                deleteTicketCommand.Parameters.AddWithValue("@eventid", eventId);
+                deleteTicketCommand.Parameters.AddWithValue("@event_id", eventId);
                 deleteTicketCommand.ExecuteNonQuery();
 
-                string query = "DELETE FROM events WHERE id = @eventid"; //deletes the event from the DB
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@eventid", eventId);
-                int result = command.ExecuteNonQuery();
+                // Step 3: Delete the event itself
+                string deleteEventQuery = "DELETE FROM events WHERE id = @event_id";
+                MySqlCommand deleteEventCommand = new MySqlCommand(deleteEventQuery, connection);
+                deleteEventCommand.Parameters.AddWithValue("@event_id", eventId);
+                int result = deleteEventCommand.ExecuteNonQuery(); 
+
+                //MySqlCommand deleteTicketCommand = new MySqlCommand(deleteTicketQuery, connection);
+                //deleteTicketCommand.Parameters.AddWithValue("@eventid", eventId);
+                //deleteTicketCommand.ExecuteNonQuery();
+
+               // string query = "DELETE FROM events WHERE id = @eventid"; //deletes the event from the DB
+              //  MySqlCommand command = new MySqlCommand(query, connection);
+             //   command.Parameters.AddWithValue("@eventid", eventId);
+               // int result = command.ExecuteNonQuery();
                 if (result > 0)
                 {
                     MessageBox.Show("Event deleted successfully.");
