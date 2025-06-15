@@ -25,14 +25,22 @@ namespace EventManagmentSystem.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int eventId = (int)comboBox1.SelectedValue; //get the id of the selected id
-            Events selectedEvent = new Controller.EventController().getEventById(eventId); //get the event detaills from the DB and creates a new object
+            if (comboBox1.SelectedValue == null || comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an event from the dropdown.");
+                return;
+            }
+
+            int eventId = (int)comboBox1.SelectedValue;
+
+
+            Events selectedEvent = new Controller.EventController().getEventById(eventId);
+
             if (selectedEvent != null)
             {
-                
-                textBox2.Text = selectedEvent.Description;
+                textBox3.Text = selectedEvent.Description;
                 dateTimePicker1.Value = selectedEvent.Date;
-                textBox3.Text = selectedEvent.Location;
+                textBox2.Text = selectedEvent.Location;
                 comboBox2.Text = selectedEvent.Availability.ToString();
             }
             else
@@ -40,6 +48,7 @@ namespace EventManagmentSystem.View
                 MessageBox.Show("Event not found.");
             }
         }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -90,6 +99,8 @@ namespace EventManagmentSystem.View
                 comboBox1.DataSource = events; //sets the datasource for the dropdown menu as events
                 comboBox1.DisplayMember = "Name"; //shows the events under the dropdown menu
                 comboBox1.ValueMember = "Id"; //uses the event id as the value
+
+                comboBox1.SelectedIndex = -1;
             }
             else
             {
@@ -99,15 +110,22 @@ namespace EventManagmentSystem.View
 
         private void button1_Click(object sender, EventArgs e) //updates the event details
         {
+            if (comboBox1.SelectedValue == null || comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an event from the dropdown.");
+                return; 
+            }
 
-            int eventId = (int)comboBox1.SelectedValue; 
+            int eventId = (int)comboBox1.SelectedValue;
+
+
 
             //gets the updated data from the fields
 
             String eventName = comboBox1.Text;
             DateTime dateTime = dateTimePicker1.Value;
-            string description = textBox2.Text;
-            string location = textBox3.Text;
+            string description = textBox3.Text;
+            string location = textBox2.Text;
             string availability = comboBox2.Text;
             Organizers organizer = new Controller.OrganizerController().getOrganizersfromId(Session.Id);
 
@@ -130,6 +148,10 @@ namespace EventManagmentSystem.View
             {
                 MessageBox.Show("Error updating event: " + ex.Message);
             }
+
+            textBox2.Clear();
+            textBox3.Clear();
+            comboBox2.Text = "";
         }
     }
 }
