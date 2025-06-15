@@ -285,15 +285,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\admindpanel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\signup.jpeg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\NATHANREINDS-Amsterdam750Jaar-Suppliers-LR-1181.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -304,9 +295,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\depositphotos_70080705-stock-illustration-blue-circuit-board.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\8eee04aeefee34699b413b5a55079b82.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\8eee04aeefee34699b413b5a55079b82.png" />
