@@ -61,10 +61,10 @@ namespace EventManagmentSystem.View
             AddTicket_Load(sender, e);
         }
 
-        // Handle ticket type selection change
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Can be used to update UI based on ticket type
+
         }
     }
 }

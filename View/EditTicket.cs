@@ -50,7 +50,7 @@ namespace EventManagmentSystem.View
             string ticketType = comboBox2.Text;
 
             // Get ticket details
-            Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType);
+            Ticket selectedTicket = new Controller.TicketController().getTickeybyEventandType(eventId, ticketType); 
 
             if (selectedTicket != null)
             {
